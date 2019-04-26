@@ -24,5 +24,6 @@ defmodule AddWeb.Router do
     resources "/users", UserController, except: [:new, :edit]
     resources "/questions", QuestionController, except: [:new, :edit]
     resources "/levels", LevelController, except: [:new, :edit]
+    resources "/answers", AnswerController, except: [:new, :edit]
   end
 end

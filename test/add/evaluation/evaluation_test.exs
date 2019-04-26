@@ -120,4 +120,65 @@ defmodule Add.EvaluationTest do
       assert %Ecto.Changeset{} = Evaluation.change_level(level)
     end
   end
+
+  describe "answers" do
+    alias Add.Evaluation.Answer
+
+    @valid_attrs %{commentary: "some commentary", cycle: "some cycle"}
+    @update_attrs %{commentary: "some updated commentary", cycle: "some updated cycle"}
+    @invalid_attrs %{commentary: nil, cycle: nil}
+
+    def answer_fixture(attrs \\ %{}) do
+      {:ok, answer} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Evaluation.create_answer()
+
+      answer
+    end
+
+    test "list_answers/0 returns all answers" do
+      answer = answer_fixture()
+      assert Evaluation.list_answers() == [answer]
+    end
+
+    test "get_answer!/1 returns the answer with given id" do
+      answer = answer_fixture()
+      assert Evaluation.get_answer!(answer.id) == answer
+    end
+
+    test "create_answer/1 with valid data creates a answer" do
+      assert {:ok, %Answer{} = answer} = Evaluation.create_answer(@valid_attrs)
+      assert answer.commentary == "some commentary"
+      assert answer.cycle == "some cycle"
+    end
+
+    test "create_answer/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Evaluation.create_answer(@invalid_attrs)
+    end
+
+    test "update_answer/2 with valid data updates the answer" do
+      answer = answer_fixture()
+      assert {:ok, %Answer{} = answer} = Evaluation.update_answer(answer, @update_attrs)
+      assert answer.commentary == "some updated commentary"
+      assert answer.cycle == "some updated cycle"
+    end
+
+    test "update_answer/2 with invalid data returns error changeset" do
+      answer = answer_fixture()
+      assert {:error, %Ecto.Changeset{}} = Evaluation.update_answer(answer, @invalid_attrs)
+      assert answer == Evaluation.get_answer!(answer.id)
+    end
+
+    test "delete_answer/1 deletes the answer" do
+      answer = answer_fixture()
+      assert {:ok, %Answer{}} = Evaluation.delete_answer(answer)
+      assert_raise Ecto.NoResultsError, fn -> Evaluation.get_answer!(answer.id) end
+    end
+
+    test "change_answer/1 returns a answer changeset" do
+      answer = answer_fixture()
+      assert %Ecto.Changeset{} = Evaluation.change_answer(answer)
+    end
+  end
 end
