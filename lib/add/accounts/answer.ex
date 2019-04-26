@@ -1,0 +1,21 @@
+defmodule Add.Accounts.Answer do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema "answers" do
+    field :commentary, :string
+    field :cycle, :string
+    field :question_id, :id
+    field :level_id, :id
+    field :user_id, :id
+
+    timestamps()
+  end
+
+  @doc false
+  def changeset(answer, attrs) do
+    answer
+    |> cast(attrs, [:cycle, :commentary])
+    |> validate_required([:cycle, :commentary])
+  end
+end
