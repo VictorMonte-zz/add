@@ -22,5 +22,6 @@ defmodule AddWeb.Router do
   scope "/api", AddWeb do
     pipe_through :api
     resources "/users", UserController, except: [:new, :edit]
+    resources "/questions", QuestionController, except: [:new, :edit]
   end
 end
