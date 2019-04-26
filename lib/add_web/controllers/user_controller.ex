@@ -1,13 +1,15 @@
 defmodule AddWeb.UserController do
   use AddWeb, :controller
+  require Logger
 
   alias Add.Identification
   alias Add.Identification.User
 
   action_fallback AddWeb.FallbackController
 
-  def index(conn, _params) do
-    users = Identification.list_users()
+  def index(conn, params) do
+
+    users = Identification.list_users(params)
     render(conn, "index.json", users: users)
   end
 

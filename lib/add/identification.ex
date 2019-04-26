@@ -17,8 +17,16 @@ defmodule Add.Identification do
       [%User{}, ...]
 
   """
-  def list_users do
-    Repo.all(User)
+
+  def list_users(%{"cpf" => cpf}) do
+    User
+    |> where(cpf: ^cpf)
+    |> Repo.all()
+  end
+
+  def list_users(%{}) do
+    User
+    |> Repo.all()
   end
 
   @doc """
