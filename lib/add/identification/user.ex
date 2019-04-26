@@ -4,7 +4,7 @@ defmodule Add.Identification.User do
 
   schema "users" do
     field :cpf, :string
-    field :user_cpf, :id
+    field :user_manager_id, :id
 
     timestamps()
   end
@@ -12,7 +12,7 @@ defmodule Add.Identification.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:cpf])
+    |> cast(attrs, [:cpf, :user_manager_id])
     |> validate_required([:cpf])
   end
 end
