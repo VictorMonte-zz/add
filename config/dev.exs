@@ -11,15 +11,7 @@ config :add, AddWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [
-    node: [
-      "node_modules/webpack/bin/webpack.js",
-      "--mode",
-      "development",
-      "--watch-stdin",
-      cd: Path.expand("../assets", __DIR__)
-    ]
-  ]
+  watchers: []
 
 # ## SSL Support
 #
@@ -71,5 +63,5 @@ config :add, Add.Repo,
   username: "postgres",
   password: "postgres",
   database: "add_dev",
-  hostname: "localhost",
+  hostname: "postgres",
   pool_size: 10
