@@ -12,6 +12,7 @@ defmodule AddWeb.UserView do
 
   def render("user.json", %{user: user}) do
     %{id: user.id,
-      cpf: user.cpf}
+      cpf: user.cpf,
+      user_manager_id: user.user_manager_id}
   end
 end

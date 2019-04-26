@@ -15,7 +15,7 @@ defmodule Add.Evaluation.Answer do
   @doc false
   def changeset(answer, attrs) do
     answer
-    |> cast(attrs, [:cycle, :commentary])
+    |> cast(attrs, [:cycle, :commentary, :question_id, :level_id, :user_id])
     |> validate_required([:cycle, :commentary])
   end
 end

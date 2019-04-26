@@ -13,6 +13,9 @@ defmodule AddWeb.AnswerView do
   def render("answer.json", %{answer: answer}) do
     %{id: answer.id,
       cycle: answer.cycle,
-      commentary: answer.commentary}
+      commentary: answer.commentary,
+      question_id: answer.question_id,
+      level_id: answer.level_id,
+      user_id: answer.user_id}
   end
 end
