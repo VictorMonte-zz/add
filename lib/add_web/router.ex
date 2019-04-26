@@ -23,5 +23,6 @@ defmodule AddWeb.Router do
     pipe_through :api
     resources "/users", UserController, except: [:new, :edit]
     resources "/questions", QuestionController, except: [:new, :edit]
+    resources "/levels", LevelController, except: [:new, :edit]
   end
 end
