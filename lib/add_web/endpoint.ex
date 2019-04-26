@@ -42,5 +42,9 @@ defmodule AddWeb.Endpoint do
     key: "_add_key",
     signing_salt: "L1hV8ZZI"
 
+  plug Corsica,
+    origins: "*",
+    log: [rejected: :error, invalid: :warn, accepted: :debug]
+
   plug AddWeb.Router
 end
